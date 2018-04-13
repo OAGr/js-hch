@@ -4,8 +4,7 @@ import { ApplyStrategyToQuestion } from './ApplyStrategyToQuestion';
 
 const moonWeigh = ({ question, instance }: any) => {
     if (question !== 'How much does the moon weigh?') { return false; }
-    const child = new FindStrategy();
-    const strategy = child.execute({ question });
+    const strategy = (new FindStrategy()).execute({question});
     const toChild = new ApplyStrategyToQuestion();
     const response = toChild.execute({
         strategy: strategy.value,
