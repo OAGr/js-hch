@@ -3,13 +3,19 @@ import './App.css';
 import { RootQuestion } from './workspaces/roots/RootQuestion';
 
 class App extends React.Component {
+  main() {
+    const rootQ = new RootQuestion();
+    const {value, error, instance, children} = rootQ.run({question: 'What time is it??'});
+    return {value, error, instance, children};
+  }
   render() {
-    const rootQ = new RootQuestion('What time is it??');
-    const results = rootQ.run({});
+    const {value, error, instance, children} = this.main();
+    console.log(instance, children);
     return (
       <div >
-        <h3>{rootQ.question}</h3>
-        <pre className="code">{JSON.stringify(results, null, 2)}</pre>
+        {/* <h3>{this.main()rootQ.question}</h3> */}
+        <pre className="code">{JSON.stringify(value, null, 2)}</pre>
+        <pre className="code">{JSON.stringify(error, null, 2)}</pre>
       </div>
     );
   }

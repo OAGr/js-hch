@@ -4,13 +4,15 @@ import { GenericQuestion } from '../GenericQuestion';
 export class RootQuestion extends Workspace {
     public question: any;
 
-    constructor(question: any) {
-        super();
-        this.question = question;
+    run({question}: any) {
+        const subQuestion = new GenericQuestion();
+        const {value, error, instance} = subQuestion.run({question});
+        return {value, error, instance: this, children: instance};
     }
 
-    _run() {
+    children({question}: any) {
         const subQuestion = new GenericQuestion();
-        return subQuestion.run({question: this.question});
+        let first = subQuestion.run({question});
+        return [first];
     }
 }

@@ -2,10 +2,6 @@ export class Workspace {
     // private database: any;
     // private state: any;
 
-    constructor() {
-        // this.database = database;
-    }
-
     invalidInputError(inputs: any) {
         console.error(`${this.constructor.name} had an error with inputs: `, inputs);
         return  {
