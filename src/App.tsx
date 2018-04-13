@@ -5,7 +5,7 @@ import { RootQuestion } from './workspaces/roots/RootQuestion';
 class App extends React.Component {
   main() {
     const rootQ = new RootQuestion();
-    const {value, error, instance, children} = rootQ.run({question: 'What time is it??'});
+    const {value, error, instance, children} = rootQ.withProps({question: 'What time is it?'}).run();
     return {value, error, instance, children};
   }
   render() {

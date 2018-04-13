@@ -1,4 +1,5 @@
 export class Workspace {
+    public props: any;
     // private database: any;
     // private state: any;
 
@@ -11,11 +12,21 @@ export class Workspace {
         };
     }
 
-    run(inputs: any) {
-        return this._run(inputs);
+    withProps(props: any) {
+        this.props = props;
+        return this;
     }
 
-    _run(inputs: any) {
+    execute(inputs: any) {
+        this.props = inputs;
+        return this.run();
+    }
+
+    run() {
+        return this._run();
+    }
+
+    _run() {
         throw new Error('Workspace not implemented!');
     }
 }
