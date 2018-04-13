@@ -8,5 +8,14 @@ A simple hch-like system done in javascript. All state is currently stored in th
 - There should be some way of calling a function to say, "I want someone to write a function that does X, with Y inputs".
 - There could be generators for creating new functions.
 
+## Running
+```
+yarn install
+yarn run start
+```
+To use: 
+- To make a new root question, edit the RootQuestions in the App component.
+- After that, if the subtree needs work, at least one leaf should always be red. Work on this one next.
+
 ## Example Screenshot:
 ![Simple Screenshot](simple-screenshot.png?raw=true "Screenshot Example")
