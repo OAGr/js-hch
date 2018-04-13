@@ -1,5 +1,5 @@
 # react-hch
-A simple hch-like system done in javascript. All state is currently stored in the code. Users build trees by directly editing the source code. The app is currently useful for experimentation, though is pretty basic.
+A simple hch-like system done in javascript. All state is currently stored in the code. Question trees are visualized in React. Users build trees by directly editing the source code. The app is currently useful for experimentation, though is pretty basic.
 
 ## TODO
 - Budgets and similar could be added by adding redux or similar. State would have to be stored in an external system.
@@ -16,6 +16,14 @@ yarn run start
 To use: 
 - To make a new root question, edit the RootQuestions in the App component.
 - After that, if the subtree needs work, at least one leaf should always be red. Work on this one next.
+- All components should have a ``run`` function that returns the following elements:
+```javascript
+value //If _run() returns a successful response, it should be here.
+error //A hash containing error information.
+instance //A reference to this component.
+children //References to any child components.
+```
+Default values of these exist in the ``Workspace`` abstract class.
 
 ## Example Screenshot:
 ![Simple Screenshot](simple-screenshot.png?raw=true "Screenshot Example")
