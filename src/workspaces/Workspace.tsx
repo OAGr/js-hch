@@ -17,16 +17,18 @@ export class Workspace {
         return this;
     }
 
-    execute(inputs: any) {
-        this.props = inputs;
-        return this.run();
-    }
-
     run() {
-        return this._run();
+        let defaults = {
+            value: false,
+            error: false,
+            instance: this,
+            children: [],
+        };
+        const results = this._run();
+        return {...defaults, ...results};
     }
 
-    _run() {
-        throw new Error('Workspace not implemented!');
+    _run(): any {
+        return {};
     }
 }
