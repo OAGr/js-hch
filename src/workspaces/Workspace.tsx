@@ -17,6 +17,11 @@ export class Workspace {
         return this;
     }
 
+    execute(props: any) {
+        this.withProps(props);
+        return this.run();
+    }
+
     run() {
         let defaults = {
             value: false,
@@ -25,6 +30,7 @@ export class Workspace {
             children: [],
         };
         const results = this._run();
+        // console.log('Running with', defaults, results);
         return {...defaults, ...results};
     }
 

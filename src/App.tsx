@@ -3,42 +3,47 @@ import './App.css';
 import { RootQuestion } from './workspaces/roots/RootQuestion';
 import styled from 'styled-components';
 
-const WorkspaceContainerStyle = styled.div`
-  background: #ddd;
+const WorkspaceContainerStyle: any = styled.div`
+  background: ${({ hasError }: any) => hasError ? '#e4c8c8' : '#eee'};
   float: left;
-  margin: 10px;
+  margin: 2px;
 `;
 
-// <pre className="code">{JSON.stringify(value, null, 2)}</pre>
-// <pre className="code">{JSON.stringify(error, null, 2)}</pre>
 const WorkspaceContainer = ({ instance }: any) => {
   const { value, error, children } = instance.run();
-  const {props} = instance;
+  const { props } = instance;
   return (
-    <div>
-      <WorkspaceContainerStyle>
+    <div style={{ float: 'left', width: '100%' }}>
+      <WorkspaceContainerStyle hasError={!!error && (instance.constructor.name === error.workspace)}>
         <h4>{instance.constructor.name}</h4>
-        <pre>{JSON.stringify({props, value, error}, null, 2)}</pre>
+        <pre>{JSON.stringify({ props, value, error }, null, 2)}</pre>
       </WorkspaceContainerStyle>
-      {children.map((c: any) => (
-        <WorkspaceContainer instance={c} children={[]} />
-      ))}
+      {children.map((c: any, index: number) => {
+        return (
+          <div style={{ float: 'left', width: '100%', marginLeft: '30px' }} key={index}>
+            <WorkspaceContainer instance={c} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const RootQuestionComponent = ({ question }: any) => {
+  const rootQ = new RootQuestion();
+  const { instance } = rootQ.execute({ question });
+  return (
+    <div style={{ float: 'left', width: '100%' }}>
+      <WorkspaceContainer instance={instance} />
     </div>
   );
 };
 
 class App extends React.Component {
-  main() {
-    const rootQ = new RootQuestion();
-    const { value, error, instance, children } = rootQ.withProps({ question: 'What time is it??' }).run();
-    return { value, error, instance, children };
-  }
   render() {
-    const { instance } = this.main();
     return (
       <div >
-        {/* <h3>{this.main()rootQ.question}</h3> */}
-        <WorkspaceContainer instance={instance} />
+        <RootQuestionComponent question="How much does the moon weigh?" />
       </div>
     );
   }

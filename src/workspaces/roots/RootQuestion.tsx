@@ -4,9 +4,9 @@ import { GenericQuestion } from '../GenericQuestion';
 export class RootQuestion extends Workspace {
     public question: any;
 
-    run() {
+    _run() {
         const subQuestion = new GenericQuestion();
-        const {value, error, instance} = subQuestion.withProps({question: this.props.question}).run();
-        return {value, error, instance: this, children: [instance]};
+        const {value, error, instance} = subQuestion.execute({question: this.props.question});
+        return {value, error, children: [instance]};
     }
 }
