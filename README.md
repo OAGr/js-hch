@@ -1,4 +1,4 @@
-# js-hch
+# react-hch
 A simple hch-like system done in javascript. All state is currently stored in the code. Users build trees by directly editing the source code. The app is currently useful for experimentation, though is pretty basic.
 
 ## TODO
