@@ -8,7 +8,7 @@ export class EstimateValue extends Workspace {
                 return {
                     value: 5,
                 };
-            case 'Density of the moon':
+            case 'Density of the moon.':
                 return {
                     value: 3,
                 };
